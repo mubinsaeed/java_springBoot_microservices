@@ -9,7 +9,8 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>customer</module>
-	</modules>
+        <module>fraud</module>
+    </modules>
 	<version>1.0-SNAPSHOT</version>
 
 
