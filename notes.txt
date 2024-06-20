@@ -1,7 +1,17 @@
-current video 18
+current video 22
 
 
 How the microservices can communicate
 1) Using the RestTemplate
-2) Using the serviceDelivery
+2) Using the service discovery
 3) Using the openFeign
+
+
+Why service discovery is needed?
+Suppose that there are two instances of fraud module the customer module need to know about all the fraud modules
+and its ports. A better approach would be to have a service discovery like Eureka server and client(microservices)
+
+Through lookup they can do that
+
+ISSUE with this: If the main eureka server i.e service discovery is down there is no way for microservices to communicate
+
