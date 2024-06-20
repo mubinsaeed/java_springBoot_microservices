@@ -1,1 +1,7 @@
 current video 18
+
+
+How the microservices can communicate
+1) Using the RestTemplate
+2) Using the serviceDelivery
+3) Using the openFeign
