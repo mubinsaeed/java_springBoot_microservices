@@ -1,4 +1,4 @@
-current video 26
+current video 32
 
 
 How the microservices can communicate
@@ -30,3 +30,10 @@ ISSUE with this: If the main eureka server i.e service discovery is down there i
 
 
 ------------------Refactoriing the code by OPEN FEIGN To create a client ------------------------
+Why needed?
+    Previously we need to create a redundant fraudResponse interface in both customer and fraud package
+     fraudResponse response = restTemplate.getForObject("http://fraud/api/fraud-check/{id}", fraudResponse.class,
+                    customer.getId());
+We would have needed the above code to access the url but using previous technique we have to duplicate the Response Class again
+
+Better approach is to create an open feign client

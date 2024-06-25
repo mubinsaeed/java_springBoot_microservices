@@ -1,5 +1,7 @@
 package com.mubin.customer;
 
+import com.mubin.clients.fraud.FraudClient;
+import com.mubin.clients.fraud.fraudResponse;
 import com.mubin.customer.Customer;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private final RestTemplate restTemplate;
-
+    private final FraudClient fraudClient;
 
     public void registerCustomer(CustomerRegistrationReq customerRequest) {
         Customer customer = Customer.builder().firstName(customerRequest.firstName())
@@ -31,9 +33,12 @@ public class CustomerService {
 //                customer.getId());
 
         //USING THE EUREKA SERVICE
-        fraudResponse response = restTemplate.getForObject("http://fraud/api/fraud-check/{id}", fraudResponse.class,
-                customer.getId());
 
+        //This is the impelemetation wrt Eureka better is with OpenFeign to remove redundancy
+//        fraudResponse response = restTemplate.getForObject("http://fraud/api/fraud-check/{id}", fraudResponse.class,
+//                customer.getId());
+
+       fraudResponse response =  fraudClient.isfraudster(customer.getId());
 
         if (response.success()) {
             throw new IllegalStateException("fraudster");
