@@ -1,4 +1,4 @@
-current video 24
+current video 26
 
 
 How the microservices can communicate
@@ -15,3 +15,18 @@ Through lookup they can do that
 
 ISSUE with this: If the main eureka server i.e service discovery is down there is no way for microservices to communicate
 
+---------------------------Using the restTemplate------------------------
+ fraudResponse response = restTemplate.getForObject("http://localhost:8081/api/fraud-check/{id}", fraudResponse.class,
+                customer.getId());
+
+ Here we are consuming the service from fraud
+ However the issue is that if there are multiple instances of fraud module we cannot hardcode the api as localhost:8080
+ There could be multiple ports that run the instances
+
+
+ RESOLVE: It by using the eureka server i.e service discovery
+ The call changes to  fraudResponse response = restTemplate.getForObject("http://fraud:8081/api/fraud-check/{id}", fraudResponse.class,
+                                     customer.getId());
+
+
+------------------Refactoriing the code by OPEN FEIGN To create a client ------------------------

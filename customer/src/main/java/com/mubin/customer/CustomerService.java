@@ -1,6 +1,6 @@
 package com.mubin.customer;
 
-import com.mubin.fraud.fraudResponse;
+import com.mubin.customer.Customer;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -25,8 +25,15 @@ public class CustomerService {
         //param2: class type
         //param3: data to be send as payload parameter in this case is the id
 
-        fraudResponse response = restTemplate.getForObject("http://localhost:8081/api/fraud-check/{id}", fraudResponse.class,
+
+        //It is consuming the api from the fraud module
+//        fraudResponse response = restTemplate.getForObject("http://localhost:8081/api/fraud-check/{id}", fraudResponse.class,
+//                customer.getId());
+
+        //USING THE EUREKA SERVICE
+        fraudResponse response = restTemplate.getForObject("http://fraud/api/fraud-check/{id}", fraudResponse.class,
                 customer.getId());
+
 
         if (response.success()) {
             throw new IllegalStateException("fraudster");
