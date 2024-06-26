@@ -1,6 +1,6 @@
 package com.mubin;
 
-import com.mubin.notiification.NotificationRequest;
+import com.mubin.clients.notiification.NotificationRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +23,7 @@ public class NotificationService {
                         .emailAddress(reqBody.toCustomerName())
                         .sender("Mubin")
                         .sendAt(LocalDateTime.now())
+                        .message(reqBody.message())
                         .build()
         );
 

@@ -10,7 +10,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @EnableEurekaClient
 public class NotificationMain {
     public static void main(String[] args) {
-        SpringApplication.run(Notification.class, args);
+        SpringApplication.run(NotificationMain.class, args);
 
         System.out.println("Notification service is running!");
     }

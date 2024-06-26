@@ -1,4 +1,4 @@
-package com.mubin.notiification;
+package com.mubin.clients.notiification;
 
 public record NotificationRequest(   Integer toCustomerId,
                                      String toCustomerName,

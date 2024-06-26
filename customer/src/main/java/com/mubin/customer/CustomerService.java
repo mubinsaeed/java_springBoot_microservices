@@ -1,18 +1,17 @@
 package com.mubin.customer;
 
 import com.mubin.clients.fraud.FraudClient;
-import com.mubin.notiification.NotificationRequest;
-import com.mubin.notiification.notificationClient;
+import com.mubin.clients.notiification.NotificationRequest;
+import com.mubin.clients.notiification.notificationClient;
 import com.mubin.clients.fraud.fraudResponse;
-import com.mubin.customer.Customer;
-import com.mubin.notiification.NotificationResponse;
+import com.mubin.clients.notiification.NotificationResponse;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 @AllArgsConstructor
+
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private final RestTemplate restTemplate;

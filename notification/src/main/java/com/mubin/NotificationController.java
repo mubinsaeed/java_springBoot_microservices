@@ -1,8 +1,8 @@
 package com.mubin;
 
 
-import com.mubin.notiification.NotificationRequest;
-import com.mubin.notiification.NotificationResponse;
+import com.mubin.clients.notiification.NotificationRequest;
+import com.mubin.clients.notiification.NotificationResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
