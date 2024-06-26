@@ -37,3 +37,12 @@ Why needed?
 We would have needed the above code to access the url but using previous technique we have to duplicate the Response Class again
 
 Better approach is to create an open feign client
+
+Post req at url: localhost:8080/api/v1/customers
+Request Body: {
+              "firstName":"ABC",
+              "lastName":"CBA",
+              "email" : "abc@gmail.com"
+              }
+
+Making this request would result in populating the fields of customer , notifications and fraud table.
