@@ -1,11 +1,11 @@
 package com.mubin;
 
+import com.mubin.notiification.NotificationRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Service
@@ -15,17 +15,19 @@ public class NotificationService {
 
     @Autowired
     private final NotificationRepository notificationRepository;
-    public void saveNotification(Notification notification) {
+    public String saveNotification(NotificationRequest reqBody) {
 
         notificationRepository.save(
                 Notification.builder()
-                        .toCustomerId(notification.getToCustomerId())
-                        .emailAddress(notification.getEmailAddress())
+                        .toCustomerId(reqBody.toCustomerId())
+                        .emailAddress(reqBody.toCustomerName())
                         .sender("Mubin")
                         .sendAt(LocalDateTime.now())
                         .build()
         );
 
-        log.info("Notification saved of the object {}", notification);
+        log.info("Notification saved of the object {}", reqBody);
+        return "Notification saved";
     }
+
 }

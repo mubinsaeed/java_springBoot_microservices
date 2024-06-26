@@ -1,9 +1,13 @@
 package com.mubin.customer;
 
 import com.mubin.clients.fraud.FraudClient;
+import com.mubin.notiification.NotificationRequest;
+import com.mubin.notiification.notificationClient;
 import com.mubin.clients.fraud.fraudResponse;
 import com.mubin.customer.Customer;
+import com.mubin.notiification.NotificationResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,6 +17,8 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final RestTemplate restTemplate;
     private final FraudClient fraudClient;
+    private final notificationClient client;
+
 
     public void registerCustomer(CustomerRegistrationReq customerRequest) {
         Customer customer = Customer.builder().firstName(customerRequest.firstName())
@@ -43,6 +49,11 @@ public class CustomerService {
         if (response.success()) {
             throw new IllegalStateException("fraudster");
         }
+
+        NotificationResponse res =
+        client.sendNotification( new NotificationRequest(
+                customer.getId(), customer.getEmail(),String.format("THis is the message")
+        ));
 
 
     }
