@@ -1,4 +1,4 @@
-current video 32
+current video 34
 
 
 How the microservices can communicate
@@ -46,3 +46,29 @@ Request Body: {
               }
 
 Making this request would result in populating the fields of customer , notifications and fraud table.
+
+
+
+
+----------------------Distributed Tracing Using the Cloud Sleuth and Zipkins--------------------------------
+For the cloud Sleuth:
+    There are two params trace id and span id                            trace id    span id
+    Example: on terminal when the module is run it shows INFO[customer,19sdfdfsdfsd,s2efsfdsdsfsdf]
+
+    Following is been printed because we have inserted log.info(.....) in the code.
+
+WHY this tracing is needed?
+    When there are different microservices having multiple instances and we dont know which of the instance
+    get down of which of the module therefore we use that to identify the entire trace route of the request
+
+
+
+----------------LOAD BALANCING ---------------------------------
+When there are thousands of customer accessing the webapp either can can deploy that on very high specs single pc
+But it won't cater the need when customer access grows
+
+The possible solution to this is to have multiple instances of that running
+Issue the customer don't know which instance to connect therefore there is load balancer.
+
+HOW load balancer decides which instance to send the request to?
+They uses multiple routing algorithms most commonly round robin, least connections, least time, hash etc
